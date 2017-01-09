@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Capriola|Open+Sans" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="main.css" type="text/css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="includedContent"></div>
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"><a class="login" href="#">login</span>
+        </button>
+        <a class="navbar-brand" href="#">inbrain</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+        <li class="active"><a href="index.html">home<span class="sr-only">(current)</span></a></li>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">research</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <h1 class="heading" id="calendarHeading">Review Dates</h1>
+    <h2>In preparation for your upcoming exam, you should quiz yourself on the following dates:<h2>
+    <div class="reviewDates">
+      <p class='testInfo'><p>
+      <p class='testGapInfo'><p>
+    </div>
+    <h1 class="heading" id="calendarHeading">Create a New Quiz</h1>
+    <h2>As you review your notes, create a quiz. Quiz questions should include the important information you will need to remember for your exam.<h2>
+
+      <div class="main">
+          <div class="inner">
+            <input type="text" placeholder="quiz name" class= "quizTopic" name="topic">
+            <input type="text" placeholder="question" class= "quizQuestion" name="question">
+            <input type="text" placeholder="answer" class= "quizAnswer" name="answer">
+            <button class="submit" type="submit">Submit</button>
+        </div>
+      </div>
+      <div class="hidden-buttons">
+        <button>Add Another Question</button>
+        <button>Create Another Quiz</button>
+        <a href="quiz.html"><button>Take Quiz</button></a>
+      </div>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='http://momentjs.com/downloads/moment.min.js'></script>
+  </body>
+</html>
+<script>
+var dateEntered = window.location.search;
+console.log(dateEntered);
+var testDate = dateEntered.split("=")[1];
+console.log(testDate);
+var topics = [];
+    var dateEntered = testDate;
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd='0'+dd
+    }
+    if(mm<10) {
+        mm='0'+mm
+    }
+    today = yyyy+'-'+mm+'-'+dd;
+    var todayString = today.toString();
+    var dateEnteredString = dateEntered.toString();
+    var dateB = moment(dateEnteredString);
+    var dateC = moment(todayString);
+    var daysUntilTest = dateB.diff(dateC,'days');
+  console.log('Difference is ',dateB.diff(dateC,'days'),'days');
+  console.log('Difference is ',dateB.diff(dateC,'months'),'months');
+  $('.testInfo').append('You have '+daysUntilTest+' days until your exam');
+    var practiceGap = Math.round(daysUntilTest * 0.15);
+    $('.testGapInfo').append('To maximize your long-term information retention, you should quiz yourself over the exam material every '+practiceGap+' day(s)<br>');
+    console.log(practiceGap);
+    //var numberOfTimesToQuiz =
+    //var firstQuizDate = dateC.add
+    var practiceDate = dateC.add(practiceGap, 'days');
+    console.log(practiceDate);
+    var practiceDateString = practiceDate.toString();
+    var quizDates = [];
+    var quizDate = (todayString + daysUntilTest)
+    console.log(daysUntilTest/practiceGap);
+    var numberOfQuizzes = Math.round(daysUntilTest/practiceGap);
+    console.log(numberOfQuizzes);
+    for (i = 1; i <= numberOfQuizzes; i++) {
+      var j = i*practiceGap;
+      var dateToStudy = (moment().add(j, 'days').format('MM-DD-YYYY'));
+      console.log(dateToStudy.toString());
+      quizDates.push(dateToStudy.toString());
+      //console.log(dateC.add(practiceGap, 'days'),'days');
+    }
+    console.log(quizDates)
+    for (i=0; i< quizDates.length; i++) {
+      $('.testGapInfo').append(quizDates[i]+'<br>')
+    }
+  //  var findDates = function() {
+      // while (quizDate !== today) {
+      //   quizDate += daysUntilTest;
+      //   quizDates.push(quizDate);
+      //   console.log(quizDates);
+    //   }
+    // }
+  //  findDates();
+    console.log(practiceDateString);
+    $(".submit").click(function(){
+      $(".hidden-buttons").show();
+      $(".main").hide();
+      var quizObject = new Object();
+      quizObject.quizTopic = $('input.quizTopic').val();
+      quizObject.question = $('input.quizQuestion').val();
+      quizObject.answer = $('input.quizAnswer').val();
+      quizObject.testDate = dateEntered;
+      quizObject.practiceGap = practiceGap;
+      quizObject.studyDates = quizDates;
+      $.ajax({ type: "POST",
+      url: "/createquiz",
+      data: quizObject
+    });
+      console.log(quizObject);
+    })
+</script>

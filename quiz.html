@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">  <head>
+    <link href="https://fonts.googleapis.com/css?family=Capriola|Open+Sans" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="main.css" type="text/css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"><a class="login" href="#">login</span>
+        </button>
+        <a class="navbar-brand" href="#">inbrain</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+        <li class="active"><a href="index.html">home<span class="sr-only">(current)</span></a></li>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">research</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+<br>
+<br>
+<h1>Select a Quiz</h1>
+  <div class="quiz">
+  </div>
+  <p>Don't see a quiz? <a href='createquiz.html'>Create one here.</a></p>
+  <div class="questions">
+      <p class="grade">Questions Answered: <span class="questionsAnswered">0</span><br>Correct Answers:<span class="correctAnswers">0</span><br>Percent Correct: <span class="percentCorrect">100</span>%</p>
+      <button class="done">Done</button>
+      <button><a href="results.html">Track Quiz Results</a></button>
+  </div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.js"></script>
+<script>
+var topics = []
+$.ajax({
+  url: '/quiz',
+  type: 'GET',
+  success: function(data){
+  $.each(data, function(key, value){
+    $('.questions').prepend('<div class="'+value.quizTopic+'">'+value.question+': <input type="text"><button class="checkAnswer">Check Answer</button><span class="answer" style="display:none">'+value.answer+'</span></div>');
+    topics.push(value.quizTopic);
+  });
+  var uniqueNames = [];
+    $.each(topics, function(key, val){
+      if($.inArray(val, uniqueNames) === -1) uniqueNames.push(val);
+     });
+    $.each(uniqueNames, function(key, val){
+      $('.quiz').append('<span class="'+val+'">'+val+'</span><br>');
+    });
+  $('.quiz span').click(function() {
+    $('.questions div').hide();
+    class2 = $(this).attr('class');
+    $('div.'+class2).show();
+    totalQuestions = $('.questions div.'+class2).length;
+    totalCorrect = 0;
+    questionsAnswered = 0;
+  })
+  $('.checkAnswer').click(function() {
+    var correctAnswer = $(this).parent('div').children('span.answer').text().toLowerCase();
+    var userAnswer = $(this).parent('div').children('input').val().toLowerCase();
+    if (correctAnswer === userAnswer){
+      totalCorrect++;
+      questionsAnswered++;
+    }
+    else {
+      questionsAnswered++;
+    }
+    percentCorrect = Math.round(((totalCorrect/questionsAnswered)*100));
+    $('p.grade span.questionsAnswered').text(questionsAnswered);
+    $('p.grade span.correctAnswers').text(totalCorrect);
+    $('p.grade span.percentCorrect').text(percentCorrect);
+  });
+  $('.done').click(function() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd='0'+dd
+    }
+    if(mm<10) {
+        mm='0'+mm
+    }
+    today = mm+'-'+dd+'-'+yyyy;
+    var todayString = today.toString();
+    var quizObject = [];
+    var percentCorrect2 = $('p.grade span.percentCorrect').text();
+    quizObject.percentCorrect= percentCorrect2;
+    quizObject.topic= class2;
+    quizObject.quizDate = today;
+    console.log(quizObject);
+    // $.ajax ({
+    //   type: 'POST',
+    //   url: '/finishedquiz',
+    //   data: quizObject
+    // })
+  })
+  }
+})
+
+</script>

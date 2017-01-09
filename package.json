@@ -1,0 +1,22 @@
+{
+  "name": "inbrain2",
+  "version": "1.0.0",
+  "description": "study using spaced repetition",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "author": "cmcorrales",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "handlebars": "^4.0.6",
+    "mongodb": "^2.2.12",
+    "mongoose": "^4.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}

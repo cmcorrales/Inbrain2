@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">  <head>
+    <link href="https://fonts.googleapis.com/css?family=Capriola|Open+Sans" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="main.css" type="text/css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"><a class="login" href="#">login</span>
+        </button>
+        <a class="navbar-brand" href="#">inbrain</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+        <li class="active"><a href="index.html">home<span class="sr-only">(current)</span></a></li>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">research</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+<br>
+<br>
+<h1>Quiz Results</h1>
+<h2>Select a Quiz</h2>
+  <div class="quizTopics">
+  </div>
+  <div class="results">
+  </div>
+  <p>Don't see any results? <a href='quiz.html'>Take a quiz.</a></p>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.js"></script>
+<script>
+var topics = []
+$.ajax({
+  url: '/quiz',
+  type: 'GET',
+  success: function(data){
+    $.each(data, function(key, value){
+      topics.push(value.quizTopic);
+});
+  var uniqueNames = [];
+    $.each(topics, function(key, val){
+      if($.inArray(val, uniqueNames) === -1) uniqueNames.push(val);
+     });
+    $.each(uniqueNames, function(key, val){
+      $('.quizTopics').append('<span class="'+val+'">'+val+'</span><br>');
+    });
+var results = []
+$('.quizTopics span').click(function() {
+  var thisTopic = $(this).attr("class")
+$.ajax({
+  url: '/results',
+  type: 'GET',
+  success: function(data){
+  $.each(data, function(key, value){
+    if (value.topic == thisTopic) {
+      $('.results').html('<div class="'+value.percentCorrect+'">'+value.percentCorrect+'</div>');      
+    }
+  });
+  console.log(data);
+    }
+  })
+})
+}
+})
+</script>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Capriola|Open+Sans" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../addons/bootstrap/jquery.smartmenus.bootstrap.css" rel="stylesheet">
+    <link href="main.css" type="text/css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"><a class="login" href="#">login</span>
+        </button>
+        <a class="navbar-brand" href="#">inbrain</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+        <li class="active"><a href="#">log in<span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="#">sign up</a></li>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">research</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="cover">
+      <div class="headingcontainer">
+        <h1 class="heading">inbrain</h1>
+        <h2>study like a brain scientist</h2>
+      </div>
+    </div>
+  </body>
+  <div class="steps">
+    <p>1. Determine spaced repetition date</p>
+    <p>Enter your test date here: <input type="date" id="date" name="date"/><button class="dateEntry takeaction">submit</button></p>
+    </div>
+  </div>
+  <div class="steps">
+    <p>2. Create quizzes.</p>
+  </div>
+  <div class="steps">
+    <p>3. Track your progress.</p>
+    <div class="buttons">
+      <button class="takeaction"><a href="results.html">Test Yourself</button>
+    </div>
+  </div>
+  <script src="moment.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+  <script src='http://momentjs.com/downloads/moment.min.js'></script>
+  <script src='time.js'></script>
+</html>
+<script>
+$('.dateEntry').click(function() {
+  var dateInput = $('#date').val();
+  var dateObject = new Object();
+  dateObject.dateEntered = dateInput;
+$.ajax({
+  url: '/date',
+  type: 'POST',
+  data: dateObject
+});
+console.log(dateObject);
+window.location="calendar.html?date="+dateInput;
+});
+</script>

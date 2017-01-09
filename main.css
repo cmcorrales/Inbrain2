@@ -1,0 +1,128 @@
+.navbar-brand {
+  font-family: 'Capriola', sans-serif;
+  color: #8816FF;
+}
+.heading {
+  font-family: 'Capriola', sans-serif;
+}
+.heading:hover {
+  color: #5A00B2;
+}
+h1 {
+  text-align: center;
+  color: #8816FF;
+  margin-bottom: 0px;
+}
+h2 {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+  margin-bottom: 0px;
+}
+h2:hover {
+  color: #75697F;
+}
+.takeaction {
+  background-color: #9F8AF7;
+  color: white;
+}
+a {
+  color: none;
+}
+.takeaction:hover {
+  background-color: #8816FF;
+}
+.buttons {
+  padding-top: 20px;
+  text-align: center;
+}
+.hidden-buttons {
+  display:none;
+}
+.steps {
+  width: 30%;
+  display: inline-block;
+  text-align: left;
+  margin-top: 0px;
+  font-family: 'Open Sans', sans-serif;
+  border-color: none;
+  border-radius: 3px;
+  border-style: solid;
+  border-color: #8816FF;
+  color: black;
+  margin-left: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #FFFF6D;
+  border-width: .5px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+.steps:hover {
+  background-color: #FFFBC0;
+  color: #8816FF;
+}
+.cover {
+  padding-top: 40px;
+  padding-bottom: 130px;
+  margin-left: -3px;
+  margin-top: 0px;
+  background-image: url('inbrainbackground.png');
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+}
+.headingcontainer {
+  margin-top: 110px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: 480px;
+  margin-right: 480px;
+  padding-top: 60px;
+  padding-bottom: 90px;
+  background-color: #FFFBC0;
+  z-index: 2;
+  border-radius: 50%;
+  border-color: #9F8AF7;
+  border-style: solid;
+}
+.headingcontainer:hover {
+  background-color: #FDFFDA;
+}
+#calendarHeading {
+  margin-top: 100px;
+}
+@media screen and (max-width: 400px) { /*.43*/
+  .buttons {
+    padding-top: 8.6px;
+  }
+  .steps {
+    width: 100%;
+    display: block;
+    margin-left: 12.9px;
+    padding-left: 8.6px;
+    padding-right: 8.6px;
+    border-width: .215px;
+    padding-bottom: 8.6px;
+    padding-top: 8.6px;
+    margin-top: 10px;
+  }
+  .cover {
+    padding-top: 17.2px;
+    padding-bottom: 55.9px;
+    margin-left: -1.38px;
+    height: 43%;
+    width: 100%;
+  }
+  .headingcontainer {
+    margin-top: 50.6px;
+    margin-left: 220.8px;
+    margin-right: 220.8px;
+    padding-top: 27.6px;
+    padding-bottom: 41.4px;
+  }
+}
+.questions div{
+  display: none;
+}
