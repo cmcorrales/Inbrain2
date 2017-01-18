@@ -26,10 +26,11 @@
       </div>
     </div>
     <h1 class="heading" id="calendarHeading">Review Dates</h1>
-    <h2>In preparation for your upcoming exam, you should quiz yourself on the following dates:<h2>
     <div class="reviewDates">
-      <p class='testInfo'><p>
-      <p class='testGapInfo'><p>
+      <h2 class='testInfo'></h2>
+      <h2 class='testGapInfo'></h2>
+      <h2 class="quizDates">Your suggested quiz dates are:<br><h2>
+
     </div>
     <h1 class="heading" id="calendarHeading">Create a New Quiz</h1>
     <h2>As you review your notes, create a quiz. Quiz questions should include the important information you will need to remember for your exam.<h2>
@@ -100,8 +101,36 @@ var topics = [];
     }
     console.log(quizDates)
     for (i=0; i< quizDates.length; i++) {
-      $('.testGapInfo').append(quizDates[i]+'<br>')
+      $('.quizDates').append('<br>'+quizDates[i]+'<button class="calendarDate">Add to your calendar</button><br>')
     }
+    $('.calendarDate').click(function() {
+      $.ajax({ type: "POST",
+      url: "/addtoGoogle",
+      data: {
+        'summary': 'Google I/O 2015',
+        'description': 'A chance to hear more about Google\'s developer products.',
+        'start': {
+          'dateTime': '2015-05-28T09:00:00-07:00',
+          'timeZone': 'America/Los_Angeles',
+        },
+        'end': {
+          'dateTime': '2015-05-28T17:00:00-07:00',
+          'timeZone': 'America/Los_Angeles',
+        },
+        'recurrence': [
+          'RRULE:FREQ=DAILY;COUNT=2'
+        ],
+        'reminders': {
+          'useDefault': false,
+          'overrides': [
+            {'method': 'email', 'minutes': 24 * 60},
+            {'method': 'popup', 'minutes': 10},
+          ],
+        },
+      }
+    });
+    });
+
   //  var findDates = function() {
       // while (quizDate !== today) {
       //   quizDate += daysUntilTest;
@@ -127,4 +156,30 @@ var topics = [];
     });
       console.log(quizObject);
     })
+
+//-----------google calendar API--------------------------
+
+var event = {
+  'summary': 'Google I/O 2015',
+  'description': 'A chance to hear more about Google\'s developer products.',
+  'start': {
+    'dateTime': '2015-05-28T09:00:00-07:00',
+    'timeZone': 'America/Los_Angeles',
+  },
+  'end': {
+    'dateTime': '2015-05-28T17:00:00-07:00',
+    'timeZone': 'America/Los_Angeles',
+  },
+  'recurrence': [
+    'RRULE:FREQ=DAILY;COUNT=2'
+  ],
+  'reminders': {
+    'useDefault': false,
+    'overrides': [
+      {'method': 'email', 'minutes': 24 * 60},
+      {'method': 'popup', 'minutes': 10},
+    ],
+  },
+};
+
 </script>

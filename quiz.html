@@ -93,17 +93,18 @@ $.ajax({
     }
     today = mm+'-'+dd+'-'+yyyy;
     var todayString = today.toString();
-    var quizObject = [];
+    var quizObject = new Object();
     var percentCorrect2 = $('p.grade span.percentCorrect').text();
     quizObject.percentCorrect= percentCorrect2;
     quizObject.topic= class2;
     quizObject.quizDate = today;
     console.log(quizObject);
-    // $.ajax ({
-    //   type: 'POST',
-    //   url: '/finishedquiz',
-    //   data: quizObject
-    // })
+
+    $.ajax ({
+      type: 'POST',
+      url: '/finishedquiz',
+      data: quizObject
+    })
   })
   }
 })

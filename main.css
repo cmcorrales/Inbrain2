@@ -2,8 +2,11 @@
   font-family: 'Capriola', sans-serif;
   color: #8816FF;
 }
-.heading {
+.heading, .title {
   font-family: 'Capriola', sans-serif;
+}
+.title {
+  color: white;
 }
 .heading:hover {
   color: #5A00B2;
@@ -41,31 +44,31 @@ a {
   display:none;
 }
 .steps {
-  width: 30%;
+  width: 95%;
   display: inline-block;
   text-align: left;
   margin-top: 0px;
   font-family: 'Open Sans', sans-serif;
   border-color: none;
-  border-radius: 3px;
   border-style: solid;
   border-color: #8816FF;
   color: black;
   margin-left: 30px;
+  margin-bottom: 30px;
   padding-left: 20px;
   padding-right: 20px;
-  background-color: #FFFF6D;
+  background-color: #f9f9f9;
   border-width: .5px;
   padding-bottom: 20px;
   padding-top: 20px;
 }
 .steps:hover {
-  background-color: #FFFBC0;
+  background-color: white;
   color: #8816FF;
 }
 .cover {
   padding-top: 40px;
-  padding-bottom: 130px;
+  padding-bottom: 400px;
   margin-left: -3px;
   margin-top: 0px;
   background-image: url('inbrainbackground.png');
@@ -73,20 +76,7 @@ a {
   height: 100%;
   width: 100%;
 }
-.headingcontainer {
-  margin-top: 110px;
-  padding-left: 0px;
-  padding-right: 0px;
-  margin-left: 480px;
-  margin-right: 480px;
-  padding-top: 60px;
-  padding-bottom: 90px;
-  background-color: #FFFBC0;
-  z-index: 2;
-  border-radius: 50%;
-  border-color: #9F8AF7;
-  border-style: solid;
-}
+
 .headingcontainer:hover {
   background-color: #FDFFDA;
 }
