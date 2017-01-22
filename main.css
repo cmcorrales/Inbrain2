@@ -49,22 +49,23 @@ a {
   text-align: left;
   margin-top: 0px;
   font-family: 'Open Sans', sans-serif;
-  border-color: none;
   border-style: solid;
-  border-color: #8816FF;
-  color: black;
+  border-color: #999999;
+  border-left-width: thin;
+  color: 	#4c4c4c;
   margin-left: 30px;
   margin-bottom: 30px;
   padding-left: 20px;
   padding-right: 20px;
+  font-size: 20px;
   background-color: #f9f9f9;
   border-width: .5px;
   padding-bottom: 20px;
   padding-top: 20px;
 }
 .steps:hover {
-  background-color: white;
-  color: #8816FF;
+  background-color: #ffffff;
+  color: black;
 }
 .cover {
   padding-top: 40px;
