@@ -11,15 +11,13 @@
 .heading:hover {
   color: #5A00B2;
 }
-h1 {
-  text-align: center;
-  color: #8816FF;
-  margin-bottom: 0px;
+h2 span {
+  background-color: black;
 }
 h2 {
+  margin-top: 19%;
   text-align: center;
-  margin-top: 20px;
-  font-size: 20px;
+  font-size: 30px;
   font-family: 'Open Sans', sans-serif;
   margin-bottom: 0px;
 }
@@ -69,7 +67,7 @@ a {
 }
 .cover {
   padding-top: 40px;
-  padding-bottom: 400px;
+  padding-bottom: 22%;
   margin-left: -3px;
   margin-top: 0px;
   background-image: url('inbrainbackground.png');
@@ -97,7 +95,6 @@ a {
     border-width: .215px;
     padding-bottom: 8.6px;
     padding-top: 8.6px;
-    margin-top: 10px;
   }
   .cover {
     padding-top: 17.2px;
@@ -105,13 +102,6 @@ a {
     margin-left: -1.38px;
     height: 43%;
     width: 100%;
-  }
-  .headingcontainer {
-    margin-top: 50.6px;
-    margin-left: 220.8px;
-    margin-right: 220.8px;
-    padding-top: 27.6px;
-    padding-bottom: 41.4px;
   }
 }
 .questions div{
