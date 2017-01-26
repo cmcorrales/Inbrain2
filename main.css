@@ -44,9 +44,9 @@ a {
 .steps {
   width: 95%;
   display: inline-block;
-  text-align: left;
+  text-align: center;
   margin-top: 0px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Capriola', sans-serif;
   border-style: solid;
   border-color: #999999;
   border-left-width: thin;
@@ -67,7 +67,7 @@ a {
 }
 .cover {
   padding-top: 40px;
-  padding-bottom: 22%;
+  padding-bottom: 18%;
   margin-left: -3px;
   margin-top: 0px;
   background-image: url('inbrainbackground.png');
